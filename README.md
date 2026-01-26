@@ -1,5 +1,7 @@
 # The AntiSlop
 
+![Architecture](docs/images/architecture-diagram.png)
+
 A Claude Code skill that detects and **fixes** AI-generated writing patterns. More comprehensive than detection alone — it actually rewrites the problems.
 
 ## Why This Exists
