@@ -100,18 +100,9 @@ Request "audit only" if you just want detection without edits.
 **After:**
 > Here's how teams are using AI coding tools. In a 2024 Google study, developers completed simple functions 55% faster, but showed no improvement on debugging. The tools handle boilerplate well — config files, test scaffolding, repetitive refactors — but can't tell when they're wrong.
 
-## Comparison
+## Further Reading
 
-| Feature | The AntiSlop | humanizer |
-|---------|--------------|-----------|
-| Patterns detected | 35+ | 24 |
-| Horoscope test | Yes | No |
-| Tiered severity | Yes | No |
-| Scoring system | Yes | No |
-| Editor mode (fixes) | Yes | No |
-| Staccato detection | Yes | No |
-| Manufactured personality | Yes | No |
-| Self-promotional framing | Yes | No |
+For a deeper dive into AI writing patterns and how to maintain your authentic voice while using AI tools, see the [AI Writing Field Guide](https://go.signalovernoise.at/products/the-ai-writing-field-guide).
 
 ## Credits
 
