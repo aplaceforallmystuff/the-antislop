@@ -102,7 +102,7 @@ Request "audit only" if you just want detection without edits.
 
 ## Further Reading
 
-For a deeper dive into AI writing patterns and how to maintain your authentic voice while using AI tools, see the [AI Writing Field Guide](https://go.signalovernoise.at/products/the-ai-writing-field-guide).
+For more on AI writing patterns and maintaining your authentic voice, see the [AI Writing Field Guide](https://go.signalovernoise.at/products/the-ai-writing-field-guide).
 
 ## Credits
 

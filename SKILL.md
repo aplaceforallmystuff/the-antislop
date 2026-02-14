@@ -1,9 +1,10 @@
 ---
 name: antislop
-description: Detect and fix AI-generated writing patterns (slop). Comprehensive detection with 35+ patterns, tiered severity scoring, and editor mode.
+description: Detect and fix AI-generated writing patterns (slop). Comprehensive detection with 45+ patterns, tiered severity scoring, and editor mode.
 use_when: User wants to detect AI slop in content, audit a draft for AI patterns, check writing authenticity, review AI-generated output, humanize text, or verify content before publishing.
 user-invocable: true
 tools: [Read, Edit, Write]
+last-refreshed: 2026-02-14
 ---
 
 # The AntiSlop
@@ -51,7 +52,7 @@ Please run antislop on this: [your text]
 ## How It Works
 
 1. **Run the Horoscope Test** - Could anyone have written this for anyone?
-2. **Scan for patterns** - 35+ known AI tells across 6 categories
+2. **Scan for patterns** - 45+ known AI tells across 6 categories
 3. **Calculate slop score** - Tiered severity with quantifiable scoring
 4. **Apply fixes** - Editor mode rewrites problems, not just flags them
 5. **Report changes** - Before/after for every fix applied
@@ -76,6 +77,13 @@ These phrases are so strongly associated with AI that their presence alone sugge
 | Today's digital landscape | "In today's digital landscape..." | Remove |
 | Cutting-edge | "Cutting-edge solutions..." | Remove |
 | Pivotal moment | "Marking a pivotal moment in..." | State what happened |
+| Tapestry (abstract) | "A rich tapestry of influences..." | Remove or be specific |
+| Intricate/intricacies | "The intricacies of..." | "Details of" or remove |
+| Showcase (as verb) | "Showcasing their commitment..." | "Shows" or describe what happened |
+| Vibrant | "A vibrant community of..." | Remove or use specific detail |
+| Interplay | "The interplay between X and Y..." | "How X and Y affect each other" |
+| Garner | "Garnering attention from..." | "Got attention from" or be specific |
+| Align with | "Aligning with broader trends..." | State the actual relationship |
 
 **Research evidence:**
 - Finnish study (56,878 essays): "delve" usage increased 10.45× post-ChatGPT
@@ -121,6 +129,7 @@ Fine individually, problematic together.
 | 4 | **Promotional language** | "nestled within the breathtaking region" | "is a town in the Gonder region" |
 | 5 | **Vague attributions** | "Experts believe it plays a crucial role" | "according to a 2019 survey by..." |
 | 6 | **Formulaic challenges** | "Despite challenges... continues to thrive" | Specific facts about actual challenges |
+| 7 | **Outline-like conclusions** | "Challenges" section ending with optimistic outlook | Remove or replace with actual analysis |
 
 ---
 
@@ -146,6 +155,8 @@ Fine individually, problematic together.
 | 15 | **Emoji headers** | "🎯 Goal / 💡 Key Insight / ✅ Action Item" | Remove emojis |
 | 16 | **Title Case Headings** | "Strategic Negotiations And Partnerships" | "Strategic negotiations and partnerships" |
 | 17 | **List addiction** | Everything becomes bullets | Convert to prose where appropriate |
+| 18 | **Curly quotes** | "like this" instead of "like this" | Use straight quotes consistently |
+| 19 | **Unnecessary tables** | 3-row table that should be a sentence | Convert to prose |
 
 ---
 
@@ -340,6 +351,48 @@ Your voice is in the specificity, the opinions, the rough edges, and the rhythm.
 > Mira, an engineer at a fintech startup, said she uses Copilot "like autocomplete for boring code" but reviews every line before committing. Jake, a senior dev at a larger company, disabled it after it kept suggesting patterns from a deprecated internal library.
 >
 > The productivity claims are hard to verify. GitHub says Copilot users "accept 30% of suggestions," but acceptance is not correctness.
+
+---
+
+## Pattern Refresh Protocol
+
+Patterns go stale as AI models evolve. Before scanning, check `last-refreshed` in frontmatter. If >30 days old, refresh first.
+
+**Refresh workflow:**
+
+1. **Preferred: Gemini CLI** (saves Claude tokens):
+
+```bash
+gemini "Fetch these two pages and extract ALL AI writing patterns, phrases, and detection heuristics listed on each. Return as a structured list with pattern name, example, and which page it came from. Pages: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing and https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup" > /tmp/antislop-refresh.txt
+```
+
+2. **Fallback: Wikipedia API via curl** (works when Gemini is rate-limited or WebFetch is blocked):
+
+```bash
+# Signs of AI writing - full wikitext
+curl -s "https://en.wikipedia.org/w/api.php?action=parse&page=Wikipedia:Signs_of_AI_writing&prop=wikitext&format=json" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+print(data['parse']['wikitext']['*'][:30000])
+" > /tmp/antislop-signs.txt
+
+# WikiProject AI Cleanup
+curl -s "https://en.wikipedia.org/w/api.php?action=parse&page=Wikipedia:WikiProject_AI_Cleanup&prop=wikitext&format=json" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+print(data['parse']['wikitext']['*'][:30000])
+" > /tmp/antislop-cleanup.txt
+```
+
+3. Read the output and diff against patterns already in this skill
+4. For genuinely new patterns not already covered:
+   - Classify into Tier 1/2/3 based on how strongly they signal AI
+   - Add to the appropriate table with example and fix
+   - Update the pattern count in the overview
+5. Update `last-refreshed` date in frontmatter
+6. Report what was added (if anything)
+
+**Don't add duplicates.** Many Wikipedia patterns are already covered here under different names. Only add patterns that represent genuinely new detection signals.
 
 ---
 
