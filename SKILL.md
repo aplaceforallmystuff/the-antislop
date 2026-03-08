@@ -1,7 +1,7 @@
 ---
 name: antislop
-description: Detect and fix AI-generated writing patterns (slop). Comprehensive detection with 45+ patterns, tiered severity scoring, and editor mode.
-use_when: User wants to detect AI slop in content, audit a draft for AI patterns, check writing authenticity, review AI-generated output, humanize text, or verify content before publishing.
+description: Detect and fix AI-generated writing patterns (slop). Comprehensive detection with 45+ patterns across 3 severity tiers, scoring system, and editor mode that directly fixes problems. Use when scanning any content for AI tells, auditing drafts before publishing, checking if writing "sounds like AI", humanizing AI-generated text, or verifying content authenticity. Trigger on "check for slop", "does this sound like AI", "humanize this", "AI audit", "slop check", "clean up AI writing", or any request to detect/remove artificial-sounding patterns. Also use proactively before publishing any AI-assisted content.
+use_when: User wants to detect AI patterns, audit content authenticity, humanize AI text, check for slop, or verify writing doesn't sound AI-generated before publishing.
 user-invocable: true
 tools: [Read, Edit, Write]
 last-refreshed: 2026-02-14
@@ -17,7 +17,7 @@ A comprehensive AI writing pattern detector and fixer. Combines patterns from [W
 
 > "Could anyone have written this, for anyone?"
 
-If yes, it's slop. Like a horoscope — technically applicable to everyone, resonant with no one.
+If yes, it's slop. Like a horoscope -- technically applicable to everyone, resonant with no one.
 
 **What fails:**
 - Vague claims without specific examples
@@ -86,9 +86,9 @@ These phrases are so strongly associated with AI that their presence alone sugge
 | Align with | "Aligning with broader trends..." | State the actual relationship |
 
 **Research evidence:**
-- Finnish study (56,878 essays): "delve" usage increased 10.45× post-ChatGPT
+- Finnish study (56,878 essays): "delve" usage increased 10.45x post-ChatGPT
 - Georgia Tech (168.3M articles): "delve" went from 0.31 to 7.9 per 1,000 papers in Q1 2024
-- Biomedical study: co-usage of "delve," "realm," "underscore" increased up to 85× in 2023-2024
+- Biomedical study: co-usage of "delve," "realm," "underscore" increased up to 85x in 2023-2024
 
 ### Tier 2: Suspicious When Repeated
 
@@ -150,12 +150,12 @@ Fine individually, problematic together.
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
-| 13 | **Em dash overuse** | "institutions—not the people—yet this continues—" | Use commas or periods |
+| 13 | **Em dash overuse** | "institutions--not the people--yet this continues--" | Use commas or periods |
 | 14 | **Boldface overuse** | "**OKRs**, **KPIs**, **BMC**" | "OKRs, KPIs, BMC" |
-| 15 | **Emoji headers** | "🎯 Goal / 💡 Key Insight / ✅ Action Item" | Remove emojis |
+| 15 | **Emoji headers** | "Target Goal / Lightbulb Key Insight / Check Action Item" | Remove emojis |
 | 16 | **Title Case Headings** | "Strategic Negotiations And Partnerships" | "Strategic negotiations and partnerships" |
 | 17 | **List addiction** | Everything becomes bullets | Convert to prose where appropriate |
-| 18 | **Curly quotes** | "like this" instead of "like this" | Use straight quotes consistently |
+| 18 | **Curly quotes** | Use straight quotes consistently |
 | 19 | **Unnecessary tables** | 3-row table that should be a sentence | Convert to prose |
 
 ---
@@ -172,7 +172,7 @@ Three or more consecutive short declarative sentences stating facts in parallel 
 > The model is impressive. Complex code ships fast. Documentation writes itself. Problems get solved quickly.
 
 **After:**
-> The model is impressive — complex code ships in a single session, documentation practically writes itself, and problems that would have taken a weekend now take an afternoon.
+> The model is impressive -- complex code ships in a single session, documentation practically writes itself, and problems that would have taken a weekend now take an afternoon.
 
 **Detection rule:** 3+ consecutive sentences that are all under 10 words, all declarative, following parallel structure, and could be bullet points.
 
@@ -180,7 +180,7 @@ Three or more consecutive short declarative sentences stating facts in parallel 
 
 Every sentence 10-15 words. Short. Punchy. Exhausting.
 
-Real writing has rhythm — mix 5-word sentences for impact with 25-word sentences that explore implications.
+Real writing has rhythm -- mix 5-word sentences for impact with 25-word sentences that explore implications.
 
 ### Comparator Sentences
 
@@ -224,7 +224,7 @@ AI trying to sound human but coming across as performative:
 > So I built an MCP server that unifies all of them.
 
 **After:**
-> I run my newsletter on Kit.com. It's a solid platform, but like most SaaS tools, it means another dashboard, another set of menus to navigate, another context switch.
+> I use five different services for my workflow. They're solid platforms, but like most SaaS tools, each means another dashboard, another set of menus to navigate, another context switch.
 
 No manufactured punch. No snark. Just describes the situation.
 
@@ -233,10 +233,10 @@ No manufactured punch. No snark. Just describes the situation.
 Content positioning author's accomplishments as the headline instead of reader's transformation.
 
 **Before:**
-> I shipped 11 MCP servers over the holidays. Here's what I learned.
+> I shipped 11 projects over the holidays. Here's what I learned.
 
 **After:**
-> Most developers using Claude Code aren't aware that [observation about the reader's situation]. Here's what's changing...
+> Most developers aren't aware that [observation about the reader's situation]. Here's what's changing...
 
 The author's experience is *evidence*, not the story.
 
@@ -333,13 +333,13 @@ Your voice is in the specificity, the opinions, the rough edges, and the rhythm.
 **Before (AI-sounding):**
 > Great question! Here is an essay on this topic. I hope this helps!
 >
-> AI-assisted coding serves as an enduring testament to the transformative potential of large language models, marking a pivotal moment in the evolution of software development. In today's rapidly evolving technological landscape, these groundbreaking tools—nestled at the intersection of research and practice—are reshaping how engineers ideate, iterate, and deliver.
+> AI-assisted coding serves as an enduring testament to the transformative potential of large language models, marking a pivotal moment in the evolution of software development. In today's rapidly evolving technological landscape, these groundbreaking tools--nestled at the intersection of research and practice--are reshaping how engineers ideate, iterate, and deliver.
 >
 > At its core, the value proposition is clear: streamlining processes, enhancing collaboration, and fostering alignment. It's not just about autocomplete; it's about unlocking creativity at scale.
 >
-> - 💡 **Speed:** Code generation is significantly faster.
-> - 🚀 **Quality:** Output quality has been enhanced.
-> - ✅ **Adoption:** Usage continues to grow.
+> - Speed: Code generation is significantly faster.
+> - Quality: Output quality has been enhanced.
+> - Adoption: Usage continues to grow.
 >
 > In conclusion, the future looks bright. Let me know if you'd like me to expand!
 
@@ -360,13 +360,7 @@ Patterns go stale as AI models evolve. Before scanning, check `last-refreshed` i
 
 **Refresh workflow:**
 
-1. **Preferred: Gemini CLI** (saves Claude tokens):
-
-```bash
-gemini "Fetch these two pages and extract ALL AI writing patterns, phrases, and detection heuristics listed on each. Return as a structured list with pattern name, example, and which page it came from. Pages: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing and https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup" > /tmp/antislop-refresh.txt
-```
-
-2. **Fallback: Wikipedia API via curl** (works when Gemini is rate-limited or WebFetch is blocked):
+1. Fetch the latest patterns from Wikipedia:
 
 ```bash
 # Signs of AI writing - full wikitext
@@ -384,13 +378,13 @@ print(data['parse']['wikitext']['*'][:30000])
 " > /tmp/antislop-cleanup.txt
 ```
 
-3. Read the output and diff against patterns already in this skill
-4. For genuinely new patterns not already covered:
+2. Read the output and diff against patterns already in this skill
+3. For genuinely new patterns not already covered:
    - Classify into Tier 1/2/3 based on how strongly they signal AI
    - Add to the appropriate table with example and fix
    - Update the pattern count in the overview
-5. Update `last-refreshed` date in frontmatter
-6. Report what was added (if anything)
+4. Update `last-refreshed` date in frontmatter
+5. Report what was added (if anything)
 
 **Don't add duplicates.** Many Wikipedia patterns are already covered here under different names. Only add patterns that represent genuinely new detection signals.
 
@@ -407,7 +401,7 @@ print(data['parse']['wikitext']['*'][:30000])
 
 ## Core Principle
 
-**AI slop isn't about individual words — it's about patterns.**
+**AI slop isn't about individual words -- it's about patterns.**
 
 One "moreover" doesn't make content AI-generated. But "moreover" + "it's worth noting" + "delve into" + uniform sentences + emoji headers = obvious slop.
 
