@@ -19,6 +19,14 @@ AI-generated text has tells. Wikipedia's [Signs of AI Writing](https://en.wikipe
 
 ## Installation
 
+### Option 1: Skills CLI
+
+```bash
+npx skills add aplaceforallmystuff/the-antislop
+```
+
+### Option 2: Clone to skills directory
+
 ```bash
 mkdir -p ~/.claude/skills
 git clone https://github.com/aplaceforallmystuff/the-antislop.git ~/.claude/skills/the-antislop
@@ -107,6 +115,14 @@ Request "audit only" if you just want detection without edits.
 ## Further Reading
 
 For more on AI writing patterns and maintaining your authentic voice, see the [AI Writing Field Guide](https://go.signalovernoise.at/products/the-ai-writing-field-guide).
+
+## Related Skills
+
+Part of the [aplaceforallmystuff](https://skills.sh/aplaceforallmystuff) skills collection:
+
+- **[voice-editor](https://github.com/aplaceforallmystuff/claude-voice-editor)** — 6-pass editing to match your voice profile
+- **[voice-analyzer](https://github.com/aplaceforallmystuff/claude-voice-analyzer)** — Create the VOICE.md that personalizes detection
+- **[slop-detector](https://github.com/aplaceforallmystuff/claude-slop-detector)** — Lightweight detection-only variant
 
 ## Credits
 
